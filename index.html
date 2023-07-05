@@ -8,12 +8,20 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/a230101078.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div>
-      <p id="quote" onclick="setQuote(event.target)">Click here to generate quote</p>
+    <div class="container">
+      <p id="quote" onclick="setQuote()">Click here to generate quote</p>
+      <a id="whatsapp-link" href=""
+        ><i class="fa-brands fa-whatsapp fa-xl" style="color: #25d366"></i>
+      </a>
     </div>
+
     <script src="./script.js"></script>
   </body>
 </html>

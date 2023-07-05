@@ -43,3 +43,7 @@ p {
   color: white;
   font-family: "Roboto", sans-serif;
 }
+
+#whatsapp-link {
+  margin-top: 30px;
+}

@@ -6,6 +6,8 @@
 
 body {
   background: black;
+  /* background-image: url(""); */
+  background-size: 100vw 100vh;
 }
 
 div {
@@ -20,7 +22,7 @@ div {
   background: black;
   text-align: center;
   padding: 20px;
-  /* display: ; */
+  border-radius: 24px;
 }
 @keyframes disp {
   0% {
@@ -32,15 +34,14 @@ div {
 }
 p {
   font-family: "Montserrat", sans-serif;
-  color: white;
+  color: #ffffff;
   user-select: none;
   margin: 20px 20px;
+  font-weight: bolder;
 }
 
 a {
   text-decoration: none;
   margin-top: 30px;
+  padding: 10px;
 }
-
-
-

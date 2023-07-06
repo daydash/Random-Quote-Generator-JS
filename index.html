@@ -21,20 +21,26 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="container">
-      <p id="quote" onclick="setQuote()">Click here to generate quote</p>
+    <div class="container" onclick="setQuote()">
+      <p id="quote">Click here to generate quote !</p>
 
-      <a id="whatsappShareButton" href=""
-        ><i class="fa-brands fa-whatsapp fa-xl" style="color: #25d366"></i>
+      <a id="whatsappShareButton" class="share-links" href=""
+        ><i
+          class="fa-brands fa-square-whatsapp fa-xl"
+          style="color: #25d366"
+        ></i>
       </a>
-      <a id="twitterShareButton" href="">
-        <i class="fa-brands fa-twitter fa-xl" style="color: #1da1f2"></i>
+      <a id="twitterShareButton" class="share-links" href="">
+        <i class="fa-brands fa-square-twitter fa-xl" style="color: #1da1f2"></i>
       </a>
-      <a id="telegramShareButton" href="">
+      <a id="telegramShareButton" class="share-links" href="">
         <i class="fa-brands fa-telegram fa-xl" style="color: #0088cc"></i>
       </a>
     </div>
-
+    <!-- IvTAZxYccv6rK4Q1koHPFX8umfIyAPDcqe1ijgQe -->
+    <!-- curl https://quizapi.io/api/v1/questions -G \
+-d apiKey=IvTAZxYccv6rK4Q1koHPFX8umfIyAPDcqe1ijgQe \
+-d limit=10 -->
     <script src="./script.js"></script>
   </body>
 </html>

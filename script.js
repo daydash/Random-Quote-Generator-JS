@@ -60,16 +60,92 @@ const pageUrl = "https://daydash.github.io/Random-Quote-Generator-JS/";
 const p = document.querySelector("p");
 let unusedIds = quotes.map((x) => x.id);
 
-const setQuote = () => {
-  console.log("clicked");
+// Function to compress an image
+const compressImage = (url, maxWidth, maxHeight, quality) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      let width = img.width;
+      let height = img.height;
+
+      // Check if resizing is required
+      if (width > maxWidth || height > maxHeight) {
+        const aspectRatio = width / height;
+
+        if (width > maxWidth) {
+          width = maxWidth;
+          height = width / aspectRatio;
+        }
+
+        if (height > maxHeight) {
+          height = maxHeight;
+          width = height * aspectRatio;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // Compress the image quality
+      const compressedDataUrl = canvas.toDataURL("image/jpeg", quality);
+
+      resolve(compressedDataUrl);
+    };
+
+    img.onerror = function (error) {
+      reject(error);
+    };
+
+    img.src = url;
+  });
+};
+
+const fetchImage = async () => {
+  const response = await fetch("https://picsum.photos/v2/list");
+  const data = await response.json();
+
+  const id = Math.floor(Math.random() * data.length);
+
+  const imageUrl = data[id].download_url;
+  const maxWidth = 800;
+  const maxHeight = 600;
+  const quality = 0.2;
+
+  compressImage(imageUrl, maxWidth, maxHeight, quality)
+    .then((compressedDataUrl) => {
+      // Use the compressedDataUrl as needed, e.g., display it on the page
+      document.querySelector(
+        "body"
+      ).style.backgroundImage = `url(${compressedDataUrl})`;
+      console.log(compressedDataUrl);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  // document.querySelector(
+  //   "body"
+  // ).style.backgroundImage = `url(${data[id].download_url})`;
+};
+
+const setQuote = async () => {
+  // document.querySelectorAll(".share-links").style.display = "inline-block";
+  fetchImage();
   if (unusedIds.length !== 0) {
     const id = Math.floor(Math.random() * unusedIds.length);
     p.innerText = quotes[unusedIds[id]].quote;
     const currentQuote = encodeURIComponent(quotes[unusedIds[id]].quote);
-    document.querySelector("body").style.background =
-      quotes[unusedIds[id]].color;
-    document.querySelector(".container").style.background =
-      quotes[unusedIds[id]].color;
+    // document.querySelector("body").style.background =
+    //   quotes[unusedIds[id]].color;
+    // document.querySelector(".container").style.background =
+    //   quotes[unusedIds[id]].color;
+
     document.querySelector(
       "#whatsappShareButton"
     ).href = `https://wa.me/?text=${currentQuote}`;

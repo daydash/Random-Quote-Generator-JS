@@ -66,7 +66,7 @@ const compressImage = (url, maxWidth, maxHeight, quality) => {
     const img = new Image();
     img.crossOrigin = "anonymous";
 
-    img.onload = function () {
+    img.onload = () => {
       const canvas = document.createElement("canvas");
       let width = img.width;
       let height = img.height;
@@ -135,7 +135,6 @@ const fetchImage = async () => {
 };
 
 const setQuote = async () => {
-  // document.querySelectorAll(".share-links").style.display = "inline-block";
   fetchImage();
   if (unusedIds.length !== 0) {
     const id = Math.floor(Math.random() * unusedIds.length);
